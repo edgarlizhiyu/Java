@@ -26,7 +26,7 @@ public class GameWorld {
         for(int i = 0; i < zombies.length; i ++){
             //产生随机数
             int random = (int)(Math.random()*10);
-            //新建僵尸对象
+            //新建僵尸对象///
             zomby = new Zombies();
             //僵尸类型
             zomby.setType("僵尸-"+i);
