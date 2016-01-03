@@ -1,5 +1,8 @@
 package com.homework;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by zn on 2015/12/31.
  */
@@ -95,11 +98,48 @@ public class Utils {
      * @return
      */
     public static boolean isEmail(String str) {
-        return true;
+        Pattern pattern = Pattern.compile("^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$");
+        Matcher matcher = pattern.matcher(str);
+        return matcher.matches();
+
+
     }
 
+    public void registerAccount(int index,Account [][] account,String name, String password,int money) {
+//        boolean isFull = false;
+//        for (int i = 0; i < account.length; i++) {
+//            if (account[i].getName() == null) {
+//                isFull = false;
+//                break;
+//            } else {
+//                isFull = true;
+//            }
+//        }
+//        if (isFull) {
+//            Account[] tempAccount = account;
+//            account = new Account[account.length * 2];
+//            for (int i = 0; i < tempAccount.length; i++) {
+//                account[i] = tempAccount[i];
+//            }
+//        }
+
+            for(int j = 0 ; j < account[index].length; j ++) {
+                if (account[index] != null && name.equals(account[index][j].getName())) {
+                    System.out.println("用户已存在");
+                    break;
+                } else if (account[index][j].getName() == null) {
+                    Account tempAccount = new Account();
+                    tempAccount.setName(name);
+                    tempAccount.setPassword(password);
+                    tempAccount.setMoney(money);
+                    account[index][j]= tempAccount;
+                    break;
+                }
+            }
+
+    }
     /**
-     * 注册功能
+     * 用户注册功能
      * 检查注册是否重复 用户数组是否已满
      *
      * @param users    用户数组
@@ -193,6 +233,7 @@ public class Utils {
             }
         }
     }
+
     /**
      * 封装输出指令
      *
